@@ -7,13 +7,14 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CsvReader {
+public class ArgumentReaderCsv {
 
     public static void main(String[] args) throws IOException {
         Path path = Path.of("src", "main", "resources", "arguments.csv");
+//        Path path = Path.of("src", "main", "resources", "formula.csv");
         List<Argument> argumentList = Files.lines(path)
                 .skip(1)
-                .map(CsvReader::getArgument)
+                .map(ArgumentReaderCsv::getArgument)
                 .collect(Collectors.toList());
         System.out.println(argumentList);
     }

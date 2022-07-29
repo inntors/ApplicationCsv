@@ -7,15 +7,11 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
-
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Argument implements Serializable {
+public class Formula implements Serializable {
 
     @NonNull
-    private String name;
-
-    @NonNull
-    private Integer value;
+    private String formula;
 }
