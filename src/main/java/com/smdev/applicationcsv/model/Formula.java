@@ -1,4 +1,4 @@
-package com.smdev.applicationcsv.csv;
+package com.smdev.applicationcsv.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,15 +7,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
-
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Argument implements Serializable {
+public class Formula implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @NonNull
-    private String name;
-
-    @NonNull
-    private Integer value;
+    private String value;
 }

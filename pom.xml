@@ -16,8 +16,24 @@
     <properties>
         <java.version>11</java.version>
     </properties>
-    <dependencies>
-        <!--        для отслеживания изменений в файле      -->
+    <dependencies><!--        для отслеживания изменений в файле      -->
+
+        <!-- https://mavenlibs.com/maven/dependency/biz.aQute.bnd/aQute.libg -->
+        <dependency>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>aQute.libg</artifactId>
+            <version>6.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -59,6 +75,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.1.0</version>
         </dependency>
     </dependencies>
 

@@ -3,32 +3,36 @@ package com.smdev.applicationcsv.csv;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
+import com.smdev.applicationcsv.model.Formula;
+import com.smdev.applicationcsv.model.Formula;
+import org.springframework.stereotype.Component;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
-public class CSVMappedToJavaBean {
-    public static void main(String[] args) throws Exception{
+@Component
+public class FormulaMappedToBean {
+    public static void main(String[] args) throws FileNotFoundException {
 
         CsvToBean csv = new CsvToBean();
-        String csvFilename = "arguments.csv";
+        String csvFilename = "src/main/resources/data.csv";
         CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
-
+        //Set column mapping strategy
         List list = csv.parse(setColumMapping(), csvReader);
         for (Object object : list) {
-            Argument argument = (Argument) object;
-            System.out.println(argument);
+            Formula formula = (Formula) object;
+            System.out.println(formula);
         }
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    private static ColumnPositionMappingStrategy setColumMapping()
-    {
+    private static ColumnPositionMappingStrategy setColumMapping() {
         ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
-        strategy.setType(Argument.class);
-        String[] columns = new String[] {"name", "value"};
+        strategy.setType(Formula.class);
+        String[] columns = new String[]{"value"};
         strategy.setColumnMapping(columns);
         return strategy;
     }
 }
+

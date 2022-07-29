@@ -1,32 +1,34 @@
-package com.smdev.applicationcsv.example;
+package com.smdev.applicationcsv.csv;
 
-import java.io.FileReader;
-import java.util.List;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
+import com.smdev.applicationcsv.model.Argument;
 
-public class CSVMappedToJavaBeanExample
+import java.io.FileReader;
+import java.util.List;
+
+public class ArgumentMappedToBean
 {
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static void main(String[] args) throws Exception
     {
         CsvToBean csv = new CsvToBean();
-        String csvFilename = "src/main/resources/data.csv";
+        String csvFilename = "src/main/resources/arguments.csv";
         CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
         //Set column mapping strategy
         List list = csv.parse(setColumMapping(), csvReader);
-        for (Object object : list) {
-            Employee employee = (Employee) object;
-            System.out.println(employee);
+        for (Object object: list) {
+            Argument argument = (Argument) object;
+            System.out.println(argument);
         }
     }
     @SuppressWarnings({"rawtypes", "unchecked"})
     private static ColumnPositionMappingStrategy setColumMapping()
     {
         ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
-        strategy.setType(Employee.class);
-        String[] columns = new String[] {"id", "firstName", "lastName", "country", "age"};
+        strategy.setType(Argument.class);
+        String[] columns = new String[] {"name", "value"};
         strategy.setColumnMapping(columns);
         return strategy;
     }
