@@ -16,4 +16,9 @@ public class Formula implements Serializable {
 
     @NonNull
     private String value;
+
+    @Override
+    public String toString() {
+        return "formula: " + value;
+    }
 }

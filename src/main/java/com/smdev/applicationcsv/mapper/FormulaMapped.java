@@ -1,32 +1,37 @@
-package com.smdev.applicationcsv.csv;
+package com.smdev.applicationcsv.mapper;
 
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
 import com.smdev.applicationcsv.model.Formula;
-import com.smdev.applicationcsv.model.Formula;
-import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class FormulaMappedToBean {
-    public static void main(String[] args) throws FileNotFoundException {
+public class FormulaMapped {
 
+    public static List<Formula> listFormula = new ArrayList<>();
+
+    public void run() {
+        listFormula.clear();
         CsvToBean csv = new CsvToBean();
-        String csvFilename = "src/main/resources/data.csv";
-        CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
-        //Set column mapping strategy
+        Path path = Path.of("src", "main", "resources", "formula.csv");
+        CSVReader csvReader;
+        try {
+            csvReader = new CSVReader(new FileReader(path.toFile()));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         List list = csv.parse(setColumMapping(), csvReader);
         for (Object object : list) {
             Formula formula = (Formula) object;
-            System.out.println(formula);
+            listFormula.add(formula);
         }
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
     private static ColumnPositionMappingStrategy setColumMapping() {
         ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
         strategy.setType(Formula.class);
