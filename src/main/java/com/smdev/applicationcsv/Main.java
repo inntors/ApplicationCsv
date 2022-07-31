@@ -18,8 +18,8 @@ public class Main {
             MonitoringFile monitoring = new MonitoringFile();
 
             if (!monitoring.runMonitoring()) {
-                FormulaMapped formulaMappedToBean = new FormulaMapped();
-                formulaMappedToBean.run();
+                FormulaMapped formulaMapped = new FormulaMapped();
+                formulaMapped.run();
                 for (Formula formula : FormulaMapped.listFormula) {
 
                     System.out.println(formula);
